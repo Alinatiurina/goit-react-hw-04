@@ -1,10 +1,11 @@
 import SearchBar from "./SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import { fetchImages } from "../images-api";
+import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import Loader from "./Loader/Loader";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-import ModalWindow from "./ImageModal/ImageModal";
+
 
 export default function App() {
     const [images, setImages] = useState([]);
@@ -43,11 +44,11 @@ export default function App() {
     return (
         <>
             <SearchBar onSearch={handleSearch} />
-            {error && <p>Some error! Please try again.</p>}
+            {error && <ErrorMessage/>}
             {images.length > 0 && <ImageGallery images={images} />}
             {isLoading && < Loader />}
             {images.length > 0 && !isLoading && <LoadMoreBtn loadMore={handleLoadMore} />}
-            <ModalWindow image={images}/>
+          
         </>
     );
 };

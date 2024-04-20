@@ -1,12 +1,16 @@
 import css from './SearchBar.module.css';
 import { BiSearchAlt } from "react-icons/bi";
 import { Field, Form, Formik } from "formik";
+import toast, { Toaster } from 'react-hot-toast';
 
-export default function SearchBar({onSearch}) {
+export default function SearchBar({ onSearch }) {
+  const notify = () => toast.error('Please, enter your request!');
+  
   return (
     <Formik
       initialValues={{ query: "" }}
-      onSubmit={(values, actions) => {
+      onSubmit={(values, actions) => { 
+        if (values.query === "") { notify() }
         onSearch(values.query);
         actions.resetForm();
       }}
@@ -19,8 +23,11 @@ export default function SearchBar({onSearch}) {
           placeholder="Search images and photos"
         />
         <button className={css.button} type="submit"><BiSearchAlt className={css.icon}/></button>
-      </Form>
+      <Toaster position="top-right" reverseOrder={false} />
+        </Form>
       </header>
+      
     </Formik>
+    
   );
 }
