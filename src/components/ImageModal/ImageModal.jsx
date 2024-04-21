@@ -5,7 +5,7 @@ Modal.setAppElement('#root');
 
 const customStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)' // Темный прозрачный фон
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   content: {
     top: "50%",
@@ -14,11 +14,11 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "#fff", // Фон модального окна
-    borderRadius: "8px", // Скругление углов
-    border: "none", // Убираем границу
-    padding: "20px", // Добавляем отступы
-    maxHeight: "80vh" // Ограничение высоты модального окна
+    backgroundColor: "#fff", 
+    borderRadius: "8px", 
+    border: "none", 
+    padding: "20px", 
+    maxHeight: "80vh" 
   }
 };
 
