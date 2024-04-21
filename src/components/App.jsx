@@ -5,6 +5,7 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import Loader from "./Loader/Loader";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
+import ModalWindow from "./ImageModal/ImageModal";
 
 
 export default function App() {
@@ -13,6 +14,8 @@ export default function App() {
     const [error, setError] = useState(false);
     const [page, setPage] = useState(1);
     const [query, setQuery] = useState('');
+    const [modal, setModal] = useState(false);
+    const [imgUrl, setImgsUrl] = useState(null);
 
     const handleSearch = async (newQuery) => {
         setQuery(newQuery);
@@ -41,14 +44,22 @@ export default function App() {
         getImage();
     }, [page, query]);
     
+    const openModal = (url) => {
+        setImgsUrl(url);
+        setModal(true);
+    };
+
+    const closeModal = () => {
+        setModal(false);
+    };
     return (
         <>
             <SearchBar onSearch={handleSearch} />
             {error && <ErrorMessage/>}
-            {images.length > 0 && <ImageGallery images={images} />}
+            {images.length > 0 && <ImageGallery images={images} onImgClick={openModal}/>}
             {isLoading && < Loader />}
             {images.length > 0 && !isLoading && <LoadMoreBtn loadMore={handleLoadMore} />}
-          
+          <ModalWindow image={imgUrl} imgModal={modal} onModalClose={closeModal}/>
         </>
     );
 };
