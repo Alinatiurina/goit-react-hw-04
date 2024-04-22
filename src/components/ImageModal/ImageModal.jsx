@@ -26,7 +26,7 @@ export default function ImageModal({ image, imgModal, onModalClose }) {
   return (
     <Modal isOpen={imgModal} onRequestClose={onModalClose} style={customStyles}>
       <div className={css.modalContent}>
-        <button className={css.closeButton} onClick={onModalClose}>Закрыть</button>
+        <button className={css.closeButton} onClick={onModalClose}>Close</button>
         <img src={image} alt="modal" className={css.modalImage} />
       </div>
     </Modal>
